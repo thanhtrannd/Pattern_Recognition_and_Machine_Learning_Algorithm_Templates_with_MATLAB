@@ -18,6 +18,7 @@ Ytrain_true = Y(Xtrain_idx,:);
 
 [W, Ytest_pred, accuracy] = mlp_train(Xtrain, Ytrain_true, [10 10 2], ["tanh", "sigmoid", "softmax"], "cross-entropy", 100000, 0.00001, Xtest, Ytest_true);
 
+%TODO: ADD REGULARIZATION AND OVERFITTING DETECTION
 
 function [W, Ytest_pred_class, accuracy] = mlp_train(X, Ytrue, network, activationfunctions, lossfunction, maxEpochs, learningrate, Xtest, Ytest)
     % X: input data with rows corresponding to the number of observations and
@@ -220,8 +221,6 @@ function [W, Ytest_pred_class, accuracy] = mlp_train(X, Ytrue, network, activati
             [~,Ytest] = max(Ytest, [], 2);
             [nY,nClasses] = size(Ytest);
         end
-        Ytest
-        Ytest_pred_class
         accuracy = mean(Ytest_pred_class == Ytest');
     end
 
